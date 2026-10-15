@@ -1,4 +1,69 @@
 <!doctype html>
-<html>
-    <meta http-equiv="refresh" content="5">
-    
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color"content="#080d19">
+    <meta name="description" content="Sonic Learn - your personal learnind and revision platform. Master every subject, practise quizzes, and track your progress.">
+
+    <title>Sonic Learn - Your Learning Command Center</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
+    <script src="js/app.js" defer></script>
+    </head>
+
+    <body>
+        <div class="app-shell">
+            <!-- Sidebar -->
+             <aside class="sidebar" id="sidebar">
+                <a class="brand" href="index.html" aria-label="Sonic Learn home">
+                <span class="brand-mark">S</span>
+                <span class="brand-copy">
+                    <strong class="u">SONIC</strong>
+                    <small>LEARN</small>
+                </span>
+                </a>
+
+                <div class="sidebar-label">WORKSPACE</div>
+
+                <nav class="navigation" aria-label="Main navigation">
+                    <!-- Navigation items would go here -->
+                     <a href="index.html" class="nav-link active" aria-current="page">
+                        <span class="nav-icon">⌂</span>
+                        <span>Dashboard</span></span>
+                     </a>
+
+                     <a href="lessons.html" class="nav-link">
+                     <span class="nav-icon">📚</span>
+                     <span>My Lessons</span>
+                     </a>
+
+                     <a href="quiz.html" class="nav-link">
+                        <span class="nav-icon">📝</span>
+                        <span>Practice Quizzes</span>
+                     </a>
+                     <button class="nav-link" type="button" id="progress-nav">
+                        <span class="nav-icon">📊</span>
+                        <span>My Progress</span>
+                     </button>
+                </nav>
+
+                <div class="sidebar-label">YOUR STUDY SPACE</div>
+
+                <div class="sidebar-note">
+                    <span class="note-icon">✦</span>
+                    <h3>Keep moving forward!</h3>
+                    <p>Remember, every small step you take in your learning journey brings you closer to mastery. Stay consistent and keep practicing!</p>
+                </div>
+
+                <div class="sidebar-footer">
+                    <span class="status-dot"></span>
+                </div>
+                </div>
+             </aside>
+        </div>
+    </body>
+    </html>
