@@ -7,9 +7,15 @@
      - Fetch lessons.json via SonicLearn.loadLessonData()
      - Populate the topic filter (#lessons-topic)
      - Render lesson cards into #lessons-list
-     - Wire search (#lessons-search), topic filter, reset (#lessons-reset)
-     - Update the live count (#lessons-count)
-     - Open an inline lesson reader (#lesson-reader)
+     - Interactive search (#lessons-search):
+         · debounced input
+         · match highlighting
+         · clear button (#lessons-search-clear)
+         · Enter clears and resets
+         · Escape blurs
+     - Topic filter + Reset button
+     - Live result count (#lessons-count)
+     - Inline reader (#lesson-reader) that keeps the grid visible
      - Mark lesson complete → SonicLearn.recordLesson()
 
    Depends on: js/app.js → window.SonicLearn
@@ -37,16 +43,19 @@
   const state = {
     all: [],           // full lesson array from lessons.json
     filtered: [],      // currently visible lessons
-    search: '',        // search query
+    search: '',        // current search query (raw)
     topic: '',         // selected topic
-    openId: null,      // id of currently open lesson in reader
+    openId: null,      // id of currently open lesson in the reader
   };
+
+  const SEARCH_DEBOUNCE = 120; // ms
+  let searchTimer = null;
 
   const completedIds = () =>
     new Set(S.readJSON(S.STORAGE.lessons, []).map((l) => l.id));
 
   /* ---------------------------------------------------------
-     Boot: load data, populate filter, render
+     Boot
      --------------------------------------------------------- */
   async function init() {
     listEl.setAttribute('aria-busy', 'true');
@@ -71,7 +80,6 @@
       new Set(state.all.map((l) => (l.topic || 'General').trim()))
     ).sort();
 
-    // Keep the "All topics" option, replace the rest
     select.innerHTML =
       `<option value="">All topics</option>` +
       topics
@@ -87,14 +95,38 @@
      --------------------------------------------------------- */
   function wireToolbar() {
     const searchInput = $('#lessons-search');
+    const clearBtn    = $('#lessons-search-clear');
     const topicSelect = $('#lessons-topic');
     const resetBtn    = $('#lessons-reset');
 
     if (searchInput) {
+      // Debounced live filtering
       searchInput.addEventListener('input', (e) => {
-        state.search = e.target.value.trim().toLowerCase();
-        applyFilters();
+        state.search = e.target.value;
+        toggleClearButton();
+        window.clearTimeout(searchTimer);
+        searchTimer = window.setTimeout(() => {
+          applyFilters();
+        }, SEARCH_DEBOUNCE);
       });
+
+      // Enter clears the search (quick escape hatch)
+      searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          clearSearch({ focus: true });
+        } else if (e.key === 'Escape') {
+          if (searchInput.value) {
+            clearSearch({ focus: true });
+          } else {
+            searchInput.blur();
+          }
+        }
+      });
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => clearSearch({ focus: true }));
     }
 
     if (topicSelect) {
@@ -105,28 +137,55 @@
     }
 
     if (resetBtn) {
-      resetBtn.addEventListener('click', () => {
-        if (searchInput) searchInput.value = '';
-        if (topicSelect) topicSelect.value = '';
-        state.search = '';
-        state.topic = '';
-        applyFilters();
-        S.announce('Filters reset.');
-      });
+      resetBtn.addEventListener('click', resetFilters);
     }
+  }
+
+  /* ---------------------------------------------------------
+     Search helpers
+     --------------------------------------------------------- */
+  function toggleClearButton() {
+    const clearBtn = $('#lessons-search-clear');
+    const searchInput = $('#lessons-search');
+    if (!clearBtn || !searchInput) return;
+    clearBtn.hidden = searchInput.value.length === 0;
+  }
+
+  function clearSearch({ focus = false } = {}) {
+    const input = $('#lessons-search');
+    if (input) input.value = '';
+    state.search = '';
+    toggleClearButton();
+    applyFilters();
+    if (focus && input) input.focus();
+    S.announce('Search cleared.');
+  }
+
+  function resetFilters() {
+    const searchInput = $('#lessons-search');
+    const topicSelect = $('#lessons-topic');
+    if (searchInput) searchInput.value = '';
+    if (topicSelect) topicSelect.value = '';
+    state.search = '';
+    state.topic = '';
+    toggleClearButton();
+    applyFilters();
+    S.announce('Filters reset.');
   }
 
   /* ---------------------------------------------------------
      Filtering
      --------------------------------------------------------- */
   function applyFilters() {
+    const query = state.search.trim().toLowerCase();
+
     state.filtered = state.all.filter((lesson) => {
       const topicMatch =
         !state.topic ||
         (lesson.topic || 'General').trim() === state.topic;
 
       if (!topicMatch) return false;
-      if (!state.search) return true;
+      if (!query) return true;
 
       const haystack = [
         lesson.title,
@@ -138,10 +197,24 @@
         .join(' ')
         .toLowerCase();
 
-      return haystack.includes(state.search);
+      return haystack.includes(query);
     });
 
     renderLessons();
+  }
+
+  /* ---------------------------------------------------------
+     Highlight matched text in a string
+     --------------------------------------------------------- */
+  function highlight(text, query) {
+    const safe = S.escapeHTML(text || '');
+    if (!query) return safe;
+
+    // Escape regex special chars in query
+    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp(`(${escaped})`, 'ig');
+
+    return safe.replace(re, '<mark>$1</mark>');
   }
 
   /* ---------------------------------------------------------
@@ -151,6 +224,7 @@
     listEl.setAttribute('aria-busy', 'false');
     const countEl = $('#lessons-count');
     const completed = completedIds();
+    const query = state.search.trim();
 
     if (!state.filtered.length) {
       if (countEl) countEl.textContent = 'No lessons found';
@@ -165,17 +239,7 @@
         </div>`;
 
       const reset = $('#lessons-empty-reset');
-      if (reset) {
-        reset.addEventListener('click', () => {
-          const searchInput = $('#lessons-search');
-          const topicSelect = $('#lessons-topic');
-          if (searchInput) searchInput.value = '';
-          if (topicSelect) topicSelect.value = '';
-          state.search = '';
-          state.topic = '';
-          applyFilters();
-        });
-      }
+      if (reset) reset.addEventListener('click', resetFilters);
       return;
     }
 
@@ -186,12 +250,16 @@
     listEl.innerHTML = state.filtered
       .map((lesson) => {
         const isDone = completed.has(lesson.id);
-        const topic  = S.escapeHTML(lesson.topic || 'General');
-        const level  = S.escapeHTML(lesson.level || 'Beginner');
-        const mins   = Number(lesson.duration) || 0;
+        const isOpen = state.openId === lesson.id;
+
+        const titleHtml   = highlight(lesson.title, query);
+        const summaryHtml = highlight(lesson.summary || '', query);
+        const topic       = S.escapeHTML(lesson.topic || 'General');
+        const level       = S.escapeHTML(lesson.level || 'Beginner');
+        const mins        = Number(lesson.duration) || 0;
 
         return `
-          <article class="lesson-card ${isDone ? 'lesson-card-done' : ''}" data-id="${S.escapeHTML(lesson.id)}">
+          <article class="lesson-card ${isDone ? 'lesson-card-done' : ''} ${isOpen ? 'is-open' : ''}" data-id="${S.escapeHTML(lesson.id)}">
             <span class="lesson-icon" aria-hidden="true">${isDone ? '✓' : '▤'}</span>
 
             <div class="lesson-meta">
@@ -200,8 +268,8 @@
               <span class="badge">${mins} min</span>
             </div>
 
-            <h3>${S.escapeHTML(lesson.title)}</h3>
-            <p>${S.escapeHTML(lesson.summary || '')}</p>
+            <h3>${titleHtml}</h3>
+            <p>${summaryHtml}</p>
 
             <div class="lesson-footer">
               <button
@@ -218,11 +286,9 @@
       })
       .join('');
 
-    // Wire "Open lesson" buttons via event delegation
-    listEl.querySelectorAll('.lesson-open').forEach((btn) => {
-      btn.addEventListener('click', () =>
-        openLesson(btn.getAttribute('data-id'))
-      );
+    // Wire "Open lesson" buttons
+    $$('.lesson-open', listEl).forEach((btn) => {
+      btn.addEventListener('click', () => openLesson(btn.getAttribute('data-id')));
     });
   }
 
@@ -235,13 +301,11 @@
 
     const reader = $('#lesson-reader');
     if (!reader) {
-      // Fallback: if the reader container is missing, do nothing but log
       console.warn('[SonicLearn] #lesson-reader not found in lessons.html');
       return;
     }
 
     state.openId = id;
-
     const isDone = completedIds().has(id);
 
     reader.hidden = false;
@@ -277,15 +341,20 @@
         </div>
       </div>`;
 
-    // Scroll into view for keyboard and screen-reader users
+    // Refresh the grid so the open card gets .is-open state
+    renderLessons();
+
+    // Scroll reader into view
     reader.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
+    // Close button
     const closeBtn = reader.querySelector('.lesson-reader-close');
     if (closeBtn) {
       closeBtn.addEventListener('click', closeLesson);
       closeBtn.focus({ preventScroll: true });
     }
 
+    // Mark complete button
     const doneBtn = reader.querySelector('#lesson-mark-complete');
     if (doneBtn) {
       doneBtn.addEventListener('click', () => markComplete(lesson));
@@ -294,13 +363,23 @@
 
   function closeLesson() {
     const reader = $('#lesson-reader');
+    const previousId = state.openId;
     if (!reader) return;
+
     reader.hidden = true;
     reader.innerHTML = '';
     state.openId = null;
 
-    // Return focus to the lesson card's open button if it still exists
-    if (state.openId) return;
+    // Re-render grid to remove the .is-open class
+    renderLessons();
+
+    // Return focus to the card's open button
+    if (previousId) {
+      const btn = listEl.querySelector(
+        `.lesson-open[data-id="${CSS.escape(previousId)}"]`
+      );
+      if (btn) btn.focus({ preventScroll: true });
+    }
   }
 
   function markComplete(lesson) {
@@ -311,7 +390,7 @@
     });
 
     if (record) {
-      // Re-render the grid so the completed badge appears
+      // Re-render grid so completed state appears
       renderLessons();
       // Re-render the reader so its footer updates
       openLesson(lesson.id);

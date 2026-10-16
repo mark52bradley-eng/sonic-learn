@@ -1576,7 +1576,172 @@ button.btn {
     transition-duration: 0.01ms !important;
   }
 }
+/* =========================================================
+   LESSONS PAGE — interactive search + in-page reader
+   ========================================================= */
 
+/* ---------- Search box with icon + clear button ---------- */
+.search-box-interactive {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-box-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  pointer-events: none;
+  transition: color var(--transition);
+}
+
+.input-with-icon {
+  padding-left: 38px;
+  padding-right: 42px;
+}
+
+.search-box-interactive:focus-within .search-box-icon {
+  color: var(--primary);
+}
+
+.search-clear {
+  position: absolute;
+  right: 8px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color var(--transition), background var(--transition);
+}
+
+.search-clear:hover {
+  color: var(--text);
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.search-clear:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Highlighted matches inside cards ---------- */
+.lesson-card mark {
+  color: var(--text);
+  background: rgba(96, 165, 250, 0.22);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+/* ---------- Lesson card pressed/active feedback ---------- */
+.lesson-card-done {
+  opacity: 0.92;
+  border-color: rgba(52, 211, 153, 0.22);
+}
+.lesson-card-done .lesson-icon {
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.14);
+}
+
+.lesson-card.is-open {
+  border-color: var(--border-active);
+  box-shadow: 0 0 0 1px var(--border-active), var(--shadow-card);
+}
+
+/* ---------- Reader panel ---------- */
+.lesson-reader {
+  margin-top: 30px;
+  animation: lessonReaderIn 220ms ease-out;
+}
+
+@keyframes lessonReaderIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lesson-reader-shell {
+  padding: 26px;
+  background: var(--surface-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.lesson-reader-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+.lesson-reader-head h2 {
+  margin: 4px 0 8px;
+}
+.lesson-reader-head .section-description {
+  margin: 0;
+}
+.lesson-reader-close {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.lesson-body {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.85;
+}
+.lesson-body p {
+  margin-bottom: 16px;
+}
+.lesson-body p:last-child {
+  margin-bottom: 0;
+}
+
+.lesson-complete-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .lesson-reader-shell {
+    padding: 20px;
+  }
+  .lesson-reader-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .lesson-reader-close {
+    align-self: flex-end;
+    margin-top: -8px;
+  }
+  .lesson-complete-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .lesson-complete-bar .button,
+  .lesson-complete-bar a.button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lesson-reader { animation: none; }
+}
 /* =========================================================
    End of stylesheet
    Copyright withheld by Mark Bradley.
