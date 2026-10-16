@@ -654,14 +654,15 @@ button.btn {
   box-shadow: var(--shadow-card);
 }
 
-.hero-decoration-one,
-.hero-decoration-two {
+/* Base decoration — shared positioning & shape */
+.hero-decoration {
   position: absolute;
   z-index: -1;
   border-radius: 50%;
   pointer-events: none;
 }
 
+/* Top-right ring decoration */
 .hero-decoration-one {
   top: -90px;
   right: -70px;
@@ -673,12 +674,22 @@ button.btn {
     0 0 0 75px rgba(147, 197, 253, 0.025);
 }
 
+/* Bottom-left glow decoration */
 .hero-decoration-two {
   bottom: -120px;
   left: -80px;
   width: 220px;
   height: 220px;
   background: radial-gradient(circle, rgba(103, 232, 249, 0.12), transparent 65%);
+}
+
+/* Optional: add more decorations easily */
+.hero-decoration-three {
+  top: 40%;
+  left: -140px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.1), transparent 70%);
 }
 
 .hero-card-content {
