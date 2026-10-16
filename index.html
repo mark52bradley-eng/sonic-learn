@@ -211,6 +211,48 @@
             <!-- Main content -->
             <main class="main-content" id="main-content" tabindex="-1">
                 <div class="page-content">
+                    <!-- =========== MINI GAME: ORB COLLECTOR =============-->
+                     <section class="dashboard-section game-section" id="game-section" aria-labelledby="game-title">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">TAKE A BREAK</p>
+                                <h2 id="game-title">Orb Collector</h2>
+                            <p class="section-description">A short 3D focus break. Move with W, A, S, and D keys or arrows.</p>
+                        </div>
+                        <button class="button button-primary" id="game-launch" type="button">
+                            Play game
+                        </button>
+                        </div>
+
+                        <div class="game-shell" id="game-shell" hidden>
+                            <div class="game-frame">
+                                <canvas id="gamecanvas" aria-label="Orb Collector 3D game canvas"></canvas>
+
+                                <div class="game-hud" aria-hidden="true">
+                                    <div class="game-hud-item">
+                                        <span class="game-hud-label">Score</span>
+                                        <span class="game-hud-value" id="game-score">0</span>
+                                    </div>
+                                    <div class="game-hud-item">
+                                        <span class="game-hud-label">Time</span>
+                                        <span class="game-hud-value" id="game-time">30</span>
+                                    </div>
+                                </div>
+                                <div class="game-overlay" id="game-overlay">
+                                    <div class="game-overlay-card">
+                                        <p class="eyebrow" id="game-overlay-eyebrow">READY?</p>
+                                        <h3 id="game-overlay-title">Collect the glowing orbs</h3>
+                                        <p id="game-overlay-text">
+                                            Use <strong> WASD</strong> or the <strong>arrow keys</strong> to move.
+                                            Grab as many orbs as you can in 30 seconds.
+                                        </p>
+                                        <div class="game-overlay-actions">
+                                            <button class="button button-primary"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <!-- Welcome / hero -->
                     <section class="welcome-section" aria-labelledby="welcome-title">
                         <div class="welcome-copy">
