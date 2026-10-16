@@ -25,6 +25,10 @@
      sonic.streak    → { count, lastDate }
    ========================================================= */
 
+   /* =======================================================
+   Experiencing minor problems with loading progress.js but don't worry pals; I am going
+   to fix it, I just need more time 
+   ========================================================= */
 (() => {
   'use strict';
 

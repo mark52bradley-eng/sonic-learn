@@ -50,3 +50,21 @@ Sonic Learn helps learners **study lessons, take interactive quizzes, track prog
 ---
 
 ## Project Structure
+- Css/
++ ----style.css
+- js/
++ ----app.js
++ ----lessons.js
++ ----progress.js
++ ----quiz.js
+- About
+- favicon.ico
+- index.html
+- lessons.html
+- lessons.json
+- LICENSE
+- manifest.json
+- quiz.html
+- Readme.md
+- screenshot.png
+- sw.js
