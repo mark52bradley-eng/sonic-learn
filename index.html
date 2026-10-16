@@ -9,7 +9,7 @@
     <title>Sonic Learn - Your Learning Command Center</title>
 
     <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <link rel="icon" href="assets/icons/icon-192.png" type="image/png" sizes="192x192">
     <script src="js/app.js" defer></script>
@@ -167,8 +167,55 @@
                                 </div>
                                 <p class="stat-value" id lessons-completed>0</p>
                                 <h3>Lessons completed</h3>
-                                <
+                                <p class="stat-description">Keep building your knowledge</p>
                             </article>
+
+                            <article class="stat-card">
+                                <div class="stat-top">
+                                    <span class="stat-icon quizzes-icon">❓</span>
+                                    <span class="stat-tag">QUIZZES</span>
+                                </div>
+                                <p class="stat-value" id="quizzes-taken">0</p>
+                                <h3>Quizzes taken</h3>
+                                <p class="stat-description">Test your knowledge regularly</p>
+                            </article>
+
+                            <article class="stat-card">
+                                <div class="stat-top">
+                                    <span class="stat-icon score"></span>
+                                    <span class="stat-tag">ACCURACY</span>
+                                </div>
+                                <p class="stat-value" id="average-score">-<span class=start-unit"></span></p>
+                                <h3>Average score</h3>
+                                <p class="stat-description">Aim for consistent improvement</p>
+                            </article>
+
+                            <article class="stat-card">
+                                <div class="stat-top">
+                                    span class="stat-icon goal-icon">⏱</span>
+                                    <span class="stat-tag">CONSISTENCY</span>
+                                </div>
+                                <p class="stat-value" id="study-streak">0</p>
+                                <h3>Study streak</h3>
+                                <p class="stat-description">Maintain your learning momentum</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!--Lessons and Goals-->
+                    <section class="content-grid">
+
+                        <div class="panel lessons-panel">
+                            <div class="panel-heading">
+                                <div>
+                                    <p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p>
+                                    <h2>Continue your lessons</h2>
+                                </div>
+                                <a href="lessons.html" class="text-link">
+                                    All lessons <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                            
                         </div>
                     </section>
                  </div>
