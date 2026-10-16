@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <!--
-        SONIC LEARN — Dashboard (Redesigned UI)
+        SONIC LEARN — Dashboard
         File: index.html
+        Purpose: Main learning dashboard for the Sonic Learn web app.
 
-        Project structure:
+        IMPORTANT PROJECT STRUCTURE
+        --------------------------
         index.html
         css/style.css
         js/app.js
@@ -15,14 +17,14 @@
         manifest.json
         sw.js
 
-        All styling lives in css/style.css.
-        All behaviour lives in js/app.js.
+        Keep styling in css/style.css and application logic in js/app.js.
+        This file intentionally contains no embedded CSS or JavaScript.
     -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark">
-    <meta name="theme-color" content="#080b14">
+    <meta name="theme-color" content="#10182f">
 
     <title>Sonic Learn — Your Personal Learning Dashboard</title>
     <meta
@@ -37,24 +39,50 @@
     <meta name="robots" content="index, follow">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <!-- Open Graph metadata for sharing -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Sonic Learn — Your Personal Learning Dashboard">
-    <meta property="og:description" content="Organise lessons, practise with quizzes, set study goals, and keep track of your learning progress with Sonic Learn.">
+    <meta
+        property="og:description"
+        content="Organise lessons, practise with quizzes, set study goals, and keep track of your learning progress with Sonic Learn."
+    >
     <meta property="og:site_name" content="Sonic Learn">
 
+    <!-- Twitter/X sharing metadata -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Sonic Learn — Your Personal Learning Dashboard">
-    <meta name="twitter:description" content="A focused study dashboard for lessons, quizzes, goals, and learning progress.">
+    <meta
+        name="twitter:description"
+        content="A focused study dashboard for lessons, quizzes, goals, and learning progress."
+    >
 
+    <!-- Progressive Web App metadata -->
     <link rel="manifest" href="manifest.json">
+
+    <!-- External stylesheet: keep all design rules in this file -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- No favicon path is declared until a real icon file exists in the repository. -->
+
+    <!-- Application logic loads after the HTML has been parsed. -->
     <script src="js/app.js" defer></script>
 </head>
 
+
+    <!--
+        ACCESSIBILITY NOTES
+        - Landmarks and headings help screen-reader navigation.
+        - Interactive controls use native buttons and links.
+        - Dynamic values have stable IDs for js/app.js.
+        - Decorative symbols are hidden from assistive technology.
+    -->
 <body>
+    <!-- Accessibility: skip directly to the main page content. -->
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
+    <!-- Shared app shell -->
     <div class="app-shell" id="app-shell">
+        <!-- Mobile backdrop used when the navigation drawer is open. -->
         <button
             class="sidebar-backdrop"
             id="sidebar-backdrop"
@@ -64,7 +92,7 @@
             hidden
         ></button>
 
-        <!-- ============ SIDEBAR ============ -->
+        <!-- Primary sidebar navigation -->
         <aside class="sidebar" id="sidebar" aria-label="Main sidebar">
             <div class="sidebar-header">
                 <a class="brand" href="index.html" aria-label="Sonic Learn home">
@@ -74,6 +102,7 @@
                         <span class="brand-tagline">Learn at your speed</span>
                     </span>
                 </a>
+
                 <button
                     class="icon-button sidebar-close"
                     id="sidebar-close"
@@ -141,8 +170,9 @@
             </div>
         </aside>
 
-        <!-- ============ MAIN COLUMN ============ -->
+        <!-- Main page column -->
         <div class="main-column">
+            <!-- Top application bar -->
             <header class="topbar">
                 <div class="topbar-left">
                     <button
@@ -155,6 +185,7 @@
                     >
                         <span aria-hidden="true">☰</span>
                     </button>
+
                     <div class="breadcrumb" aria-label="Breadcrumb">
                         <span class="breadcrumb-muted">Workspace</span>
                         <span aria-hidden="true">/</span>
@@ -171,17 +202,17 @@
                 </div>
             </header>
 
+            <!-- Main content -->
             <main class="main-content" id="main-content" tabindex="-1">
                 <div class="page-content">
-
-                    <!-- ============ HERO ============ -->
+                    <!-- Welcome / hero -->
                     <section class="welcome-section" aria-labelledby="welcome-title">
                         <div class="welcome-copy">
                             <p class="eyebrow">YOUR LEARNING JOURNEY</p>
                             <h1 id="welcome-title">Make today count.</h1>
                             <p class="welcome-description">
-                                Pick up where you left off, practise what you know,
-                                and take one more step forward. Progress over perfection.
+                                Welcome to your learning space. Pick up where you left off,
+                                practise what you know, and take one more step forward.
                             </p>
                             <div class="welcome-actions">
                                 <a class="button button-primary" href="lessons.html">
@@ -211,13 +242,20 @@
                         </div>
                     </section>
 
-                    <!-- ============ STATS ============ -->
+                    <!--
+                        These are display targets, not hard-coded analytics.
+                        js/app.js should populate them from real local app data.
+                        Use a dash or zero when no user activity exists.
+                    -->
+                    <!-- Dashboard statistics -->
                     <section class="dashboard-section" aria-labelledby="overview-title">
                         <div class="section-heading">
                             <div>
                                 <p class="eyebrow">AT A GLANCE</p>
                                 <h2 id="overview-title">Your overview</h2>
-                                <p class="section-description">A quick snapshot of your learning activity.</p>
+                                <p class="section-description">
+                                    A quick snapshot of your learning activity.
+                                </p>
                             </div>
                             <a class="text-link" href="#progress-section">View progress <span aria-hidden="true">→</span></a>
                         </div>
@@ -261,7 +299,12 @@
                         </div>
                     </section>
 
-                    <!-- ============ QUICK ACTIONS ============ -->
+                    <!--
+                        The .quick-action cards are links for fast navigation.
+                        Their pill / semicircle ends are controlled in css/style.css.
+                        Keep CSS out of this HTML file to preserve the project structure.
+                    -->
+                    <!-- Quick actions -->
                     <section class="dashboard-section quick-actions-section" id="quick-actions" aria-labelledby="quick-actions-title">
                         <div class="section-heading">
                             <div>
@@ -310,7 +353,11 @@
                         </div>
                     </section>
 
-                    <!-- ============ RECENT + GOAL ============ -->
+                    <!--
+                        Recent learning should show real saved lesson history when available.
+                        The empty state remains useful before a learner has started.
+                    -->
+                    <!-- Main content grid: recent learning and daily goal -->
                     <div class="content-grid">
                         <section class="content-panel recent-learning-panel" id="recent-learning" aria-labelledby="recent-learning-title">
                             <div class="panel-heading">
@@ -379,7 +426,11 @@
                         </section>
                     </div>
 
-                    <!-- ============ PROGRESS ============ -->
+                    <!--
+                        Keep the IDs in this section aligned with js/app.js.
+                        Do not display fabricated topic scores or activity totals.
+                    -->
+                    <!-- Detailed progress section -->
                     <section class="dashboard-section progress-section" id="progress-section" aria-labelledby="progress-title">
                         <div class="section-heading">
                             <div>
@@ -434,7 +485,7 @@
                         </div>
                     </section>
 
-                    <!-- ============ STUDY GUIDANCE ============ -->
+                    <!-- Study guidance -->
                     <section class="dashboard-section study-guidance" aria-labelledby="study-guidance-title">
                         <div class="guidance-card">
                             <div class="guidance-icon" aria-hidden="true">✦</div>
@@ -450,7 +501,8 @@
                         </div>
                     </section>
 
-                    <!-- ============ FOOTER ============ -->
+                    <!-- Footer: primary routes repeated for convenient navigation. -->
+                    <!-- Footer links -->
                     <footer class="page-footer">
                         <div class="footer-brand">
                             <span class="footer-brand-mark" aria-hidden="true">S</span>
@@ -478,6 +530,8 @@
         </div>
     </div>
 
+    <!-- Optional fallback announcement target for app.js accessibility messages. -->
     <div class="visually-hidden" id="app-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+
 </body>
 </html>
