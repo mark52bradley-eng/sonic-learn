@@ -1,0 +1,11 @@
+{
+    "id": "/",
+    "name": "Sonic Learn",
+    "short_name": "Sonic Learn",
+    "description": "Your personal learning workspace",
+    "start": "./index.html",
+    "display": "standalone",
+    "scope": "./",
+    "background_color": "#080b14",
+    "theme_color": "#080b14"
+}

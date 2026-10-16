@@ -1,380 +1,140 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <meta name="theme-color" content="#080d19">
-  <meta name="description" content="Sonic Learn — your personal learning and revision platform. Master every subject, practise quizzes, and track your progress.">
-
-  <title>Sonic Learn — Your Learning Command Centre</title>
-  
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="css/style.css">
-
-  <link rel="icon" href="assets/icons/icon-192.png" type="image/png">
-
-  <script src="js/app.js" defer></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Sonic Learn is your personal learning dashboard for exploring lessons, practising quizzes, tracking study goals, and monitoring your learning progress.">
+  <meta name="keywords" content="Sonic Learn, learning dashboard, online lessons, study planner, practice quizzes, learning progress, education">
+  <meta name="author" content="Sonic Tech">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="canonical" href="https://sonic-learn.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sonic Learn">
+  <meta property="og:title" content="Sonic Learn — Learn smarter. Go further.">
+  <meta property="og:description" content="Explore lessons, practise quizzes, set study goals, and follow your learning progress with Sonic Learn.">
+  <meta property="og:url" content="https://sonic-learn.vercel.app/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sonic Learn — Learning Dashboard">
+  <meta name="twitter:description" content="Your personal space to learn, practise, and track progress.">
+  <title>Sonic Learn — Learning Dashboard</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="icon" href="./assets/favicon.ico">
+  <script src="./js/app.js" defer></script>
 </head>
-
 <body>
-  <div class="app-shell">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar">
-      <a class="brand" href="index.html" aria-label="Sonic Learn home">
-        <span class="brand-mark">S</span>
-        <span class="brand-copy">
-          <strong>SONIC</strong>
-          <small>LEARN</small>
-        </span>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Main sidebar">
+      <a class="brand" href="./index.html" aria-label="Sonic Learn home">
+        <span class="brand-mark" aria-hidden="true">S</span>
+        <span class="brand-copy"><strong>SONIC</strong><small>LEARN</small></span>
       </a>
 
-      <div class="sidebar-label">WORKSPACE</div>
-
+      <p class="sidebar-label">Workspace</p>
       <nav class="navigation" aria-label="Main navigation">
-        <a class="nav-link active" href="index.html" aria-current="page">
-          <span class="nav-icon">⌂</span>
-          <span>Dashboard</span>
-        </a>
-
-        <a class="nav-link" href="lessons.html">
-          <span class="nav-icon">▤</span>
-          <span>My Lessons</span>
-        </a>
-
-        <a class="nav-link" href="quiz.html">
-          <span class="nav-icon">✎</span>
-          <span>Practice Quizzes</span>
-        </a>
-
-        <button class="nav-link" type="button" id="progress-nav">
-          <span class="nav-icon">◷</span>
-          <span>My Progress</span>
-        </button>
+        <a class="nav-link active" href="./index.html" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span><span>Dashboard</span></a>
+        <a class="nav-link" href="./lessons.html"><span class="nav-icon" aria-hidden="true">▤</span><span>My Lessons</span></a>
+        <a class="nav-link" href="./quiz.html"><span class="nav-icon" aria-hidden="true">✎</span><span>Practice Quizzes</span></a>
+        <button class="nav-link" type="button" id="progress-nav"><span class="nav-icon" aria-hidden="true">◷</span><span>My Progress</span></button>
       </nav>
 
-      <div class="sidebar-label">YOUR STUDY SPACE</div>
-
-      <div class="sidebar-note">
-        <span class="note-icon">✦</span>
-        <h3>Keep moving forward.</h3>
+      <p class="sidebar-label">Your study space</p>
+      <section class="sidebar-note" aria-label="Study encouragement">
+        <span class="note-icon" aria-hidden="true">✦</span>
+        <h2>Keep moving forward.</h2>
         <p>Every lesson brings you one step closer to mastery.</p>
-      </div>
+      </section>
 
-      <div class="sidebar-footer">
-        <span class="status-dot"></span>
-        <span>Learning workspace</span>
-        <span class="version">v1.0</span>
-      </div>
+      <div class="sidebar-footer"><span class="status-dot" aria-hidden="true"></span><span>Learning workspace</span><span class="version">v1.1</span></div>
     </aside>
 
-    <!-- Main application -->
-    <main class="main-content">
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
 
-      <!-- Header -->
+    <main class="main-content" id="main-content">
       <header class="topbar">
-        <button
-          class="icon-button mobile-menu"
-          id="menu-toggle"
-          type="button"
-          aria-label="Toggle navigation"
-          aria-expanded="false"
-        >☰</button>
-
-        <div class="breadcrumb">
-          <span>Workspace</span>
-          <span class="breadcrumb-divider">/</span>
-          <strong>Dashboard</strong>
-        </div>
-
+        <button class="mobile-menu" id="menu-toggle" type="button" aria-label="Open navigation" aria-controls="sidebar" aria-expanded="false">☰</button>
+        <nav class="breadcrumb" aria-label="Breadcrumb"><span>Workspace</span><span class="breadcrumb-divider" aria-hidden="true">/</span><span aria-current="page">Dashboard</span></nav>
         <div class="topbar-actions">
-          <span class="offline-indicator">
-            <span class="status-dot"></span>
-            Study mode
-          </span>
-
+          <span class="offline-indicator"><span class="status-dot" aria-hidden="true"></span>Study mode</span>
           <div class="avatar" aria-label="Learner profile">S</div>
         </div>
       </header>
 
-      <!-- Dashboard content -->
       <div class="page-content">
-
-        <section class="welcome-section">
-          <div>
-            <p class="eyebrow">YOUR LEARNING COMMAND CENTRE</p>
-            <h1>Learn smarter. <span>Go further.</span></h1>
-            <p class="welcome-description">
-              Your next breakthrough starts with the next lesson.
-              Let's make today's study session count.
-            </p>
+        <section class="welcome-section" aria-labelledby="welcome-heading">
+          <div class="welcome-copy">
+            <p class="eyebrow">Your learning command centre</p>
+            <h1 id="welcome-heading">Learn smarter. <span>Go further.</span></h1>
+            <p class="welcome-description">Your next breakthrough starts with the next lesson. Let's make today's study session count.</p>
           </div>
-
-          <div class="date-card">
-            <span class="date-icon">◷</span>
-            <div>
-              <strong id="today-date">Your study day</strong>
-              <small>One step at a time</small>
-            </div>
-          </div>
+          <div class="date-card"><span class="date-icon" aria-hidden="true">◷</span><div><strong id="today-date">Your study day</strong><small>One step at a time</small></div></div>
         </section>
 
-        <!-- Main study banner -->
-        <section class="hero-card">
+        <section class="hero-card" aria-labelledby="hero-heading">
           <div class="hero-content">
             <span class="hero-badge">✦ YOUR NEXT MISSION</span>
-            <h2>Knowledge is your<br>greatest advantage.</h2>
-            <p>
-              Review a topic, challenge yourself with a quiz,
-              and build confidence one session at a time.
-            </p>
-
+            <h2 id="hero-heading">Knowledge is your<br>greatest advantage.</h2>
+            <p>Review a topic, challenge yourself with a quiz, and build confidence one session at a time.</p>
             <div class="hero-actions">
-              <a class="primary-button" href="lessons.html">
-                Explore lessons <span aria-hidden="true">→</span>
-              </a>
-
-              <a class="secondary-button" href="quiz.html">
-                Take a quiz
-              </a>
+              <a class="primary-button" href="./lessons.html">Explore lessons <span aria-hidden="true">→</span></a>
+              <a class="secondary-button" href="./quiz.html">Take a quiz</a>
             </div>
           </div>
-
-          <div class="hero-visual" aria-hidden="true">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-            <div class="orbit orbit-three"></div>
-            <div class="hero-core">S</div>
-            <span class="floating-symbol symbol-one">∑</span>
-            <span class="floating-symbol symbol-two">π</span>
-            <span class="floating-symbol symbol-three">⚛</span>
-          </div>
+          <div class="hero-visual" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="hero-core">S</div><span class="floating-symbol symbol-one">∑</span><span class="floating-symbol symbol-two">π</span><span class="floating-symbol symbol-three">⚛</span></div>
         </section>
 
-        <!-- Statistics -->
         <section class="section-block" aria-labelledby="stats-heading">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">YOUR PERFORMANCE</p>
-              <h2 id="stats-heading">Learning overview</h2>
-            </div>
-            <span class="subtle-label">Your study statistics</span>
-          </div>
-
+          <div class="section-heading"><div><p class="eyebrow">Your performance</p><h2 id="stats-heading">Learning overview</h2></div><span class="subtle-label">Your study statistics</span></div>
           <div class="stats-grid">
-
-            <article class="stat-card">
-              <div class="stat-top">
-                <span class="stat-icon lessons-icon">▤</span>
-                <span class="stat-tag">LEARNING</span>
-              </div>
-              <p class="stat-value" id="lessons-completed">0</p>
-              <h3>Lessons completed</h3>
-              <p class="stat-description">Keep building your knowledge.</p>
-            </article>
-
-            <article class="stat-card">
-              <div class="stat-top">
-                <span class="stat-icon quizzes-icon">✎</span>
-                <span class="stat-tag">PRACTICE</span>
-              </div>
-              <p class="stat-value" id="quizzes-completed">0</p>
-              <h3>Quizzes completed</h3>
-              <p class="stat-description">Every attempt is practice.</p>
-            </article>
-
-            <article class="stat-card">
-              <div class="stat-top">
-                <span class="stat-icon score-icon">◎</span>
-                <span class="stat-tag">ACCURACY</span>
-              </div>
-              <p class="stat-value" id="average-score">—<span class="stat-unit"></span></p>
-              <h3>Average quiz score</h3>
-              <p class="stat-description">Your performance over time.</p>
-            </article>
-
-            <article class="stat-card">
-              <div class="stat-top">
-                <span class="stat-icon goal-icon">✦</span>
-                <span class="stat-tag">CONSISTENCY</span>
-              </div>
-              <p class="stat-value" id="study-streak">0</p>
-              <h3>Study streak</h3>
-              <p class="stat-description">Consecutive study days.</p>
-            </article>
-
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon lessons-icon" aria-hidden="true">▤</span><span class="stat-tag">LEARNING</span></div><p class="stat-value" id="lessons-completed">0</p><h3>Lessons completed</h3><p class="stat-description">Keep building your knowledge.</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon quizzes-icon" aria-hidden="true">✎</span><span class="stat-tag">PRACTICE</span></div><p class="stat-value" id="quizzes-completed">0</p><h3>Quizzes completed</h3><p class="stat-description">Every attempt is practice.</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon score-icon" aria-hidden="true">◎</span><span class="stat-tag">ACCURACY</span></div><p class="stat-value" id="average-score">—</p><h3>Average quiz score</h3><p class="stat-description">Your performance over time.</p></article>
+            <article class="stat-card"><div class="stat-top"><span class="stat-icon goal-icon" aria-hidden="true">✦</span><span class="stat-tag">CONSISTENCY</span></div><p class="stat-value" id="study-streak">0</p><h3>Study streak</h3><p class="stat-description">Consecutive study days.</p></article>
           </div>
         </section>
 
-        <!-- Lessons and goals -->
-        <section class="content-grid">
-
-          <div class="panel lessons-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">PICK UP WHERE YOU LEFT OFF</p>
-                <h2>Continue learning</h2>
-              </div>
-              <a href="lessons.html" class="text-link">
-                All lessons →
-              </a>
-            </div>
-
+        <section class="content-grid" aria-label="Lessons and daily goal">
+          <section class="panel lessons-panel" aria-labelledby="continue-heading">
+            <div class="panel-heading"><div><p class="eyebrow">Pick up where you left off</p><h2 id="continue-heading">Continue learning</h2></div><a href="./lessons.html" class="text-link">All lessons →</a></div>
             <div id="recent-lessons" class="lesson-list">
-              <article class="lesson-item">
-                <div class="lesson-symbol math-symbol">∑</div>
-                <div class="lesson-info">
-                  <h3>Mathematics</h3>
-                  <p>Algebra and problem-solving</p>
-                </div>
-                <a href="lessons.html" class="round-arrow" aria-label="Explore mathematics lessons">→</a>
-              </article>
-
-              <article class="lesson-item">
-                <div class="lesson-symbol physics-symbol">⚛</div>
-                <div class="lesson-info">
-                  <h3>Physics</h3>
-                  <p>Motion, speed and measurement</p>
-                </div>
-                <a href="lessons.html" class="round-arrow" aria-label="Explore physics lessons">→</a>
-              </article>
-
-              <article class="lesson-item">
-                <div class="lesson-symbol biology-symbol">✿</div>
-                <div class="lesson-info">
-                  <h3>Biology</h3>
-                  <p>Cells and living organisms</p>
-                </div>
-                <a href="lessons.html" class="round-arrow" aria-label="Explore biology lessons">→</a>
-              </article>
+              <article class="lesson-item"><div class="lesson-symbol math-symbol" aria-hidden="true">∑</div><div class="lesson-info"><h3>Mathematics</h3><p>Algebra and problem-solving</p></div><a href="./lessons.html" class="round-arrow" aria-label="Explore mathematics lessons">→</a></article>
+              <article class="lesson-item"><div class="lesson-symbol physics-symbol" aria-hidden="true">⚛</div><div class="lesson-info"><h3>Physics</h3><p>Motion, speed and measurement</p></div><a href="./lessons.html" class="round-arrow" aria-label="Explore physics lessons">→</a></article>
+              <article class="lesson-item"><div class="lesson-symbol biology-symbol" aria-hidden="true">✿</div><div class="lesson-info"><h3>Biology</h3><p>Cells and living organisms</p></div><a href="./lessons.html" class="round-arrow" aria-label="Explore biology lessons">→</a></article>
             </div>
-          </div>
+          </section>
 
-          <div class="panel goal-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">DAILY TARGET</p>
-                <h2>Today's study goal</h2>
-              </div>
-              <span class="goal-icon-large">✦</span>
-            </div>
-
+          <section class="panel goal-panel" aria-labelledby="goal-heading">
+            <div class="panel-heading"><div><p class="eyebrow">Daily target</p><h2 id="goal-heading">Today's study goal</h2></div><span class="goal-icon-large" aria-hidden="true">✦</span></div>
             <div class="goal-progress">
-              <div class="goal-number">
-                <strong id="goal-completed">0</strong>
-                <span>of <span id="goal-target">3</span> activities</span>
-              </div>
-
-              <div
-                class="progress-track"
-                role="progressbar"
-                aria-label="Daily study goal"
-                aria-valuemin="0"
-                aria-valuemax="3"
-                aria-valuenow="0"
-                id="goal-progressbar"
-              >
-                <div class="progress-fill" id="goal-progress-fill"></div>
-              </div>
-
-              <p id="goal-message">
-                Complete a lesson or quiz to get started.
-              </p>
+              <div class="goal-number"><strong id="goal-completed">0</strong><span>of <span id="goal-target">3</span> activities</span></div>
+              <div class="progress-track" id="goal-progressbar" role="progressbar" aria-label="Daily study goal" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0"><div class="progress-fill" id="goal-progress-fill"></div></div>
+              <p id="goal-message">Complete a lesson or quiz to get started.</p>
             </div>
-
-            <a class="primary-button goal-button" href="lessons.html">
-              Start studying <span aria-hidden="true">→</span>
-            </a>
-          </div>
-
+            <a class="primary-button goal-button" href="./lessons.html">Start studying <span aria-hidden="true">→</span></a>
+          </section>
         </section>
 
-        <!-- Quick actions -->
-        <section class="section-block quick-actions-section">
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">READY WHEN YOU ARE</p>
-              <h2>Quick actions</h2>
-            </div>
-          </div>
-
+        <section class="section-block quick-actions-section" aria-labelledby="quick-actions-heading">
+          <div class="section-heading"><div><p class="eyebrow">Ready when you are</p><h2 id="quick-actions-heading">Quick actions</h2></div></div>
           <div class="quick-actions-grid">
-
-            <a href="lessons.html" class="quick-action">
-              <span class="quick-action-icon">▤</span>
-              <span>
-                <strong>Explore lessons</strong>
-                <small>Learn something new</small>
-              </span>
-              <span class="quick-arrow">→</span>
-            </a>
-
-            <a href="quiz.html" class="quick-action">
-              <span class="quick-action-icon">✎</span>
-              <span>
-                <strong>Test your knowledge</strong>
-                <small>Practise what you know</small>
-              </span>
-              <span class="quick-arrow">→</span>
-            </a>
-
-            <button type="button" class="quick-action" id="view-progress">
-              <span class="quick-action-icon">◷</span>
-              <span>
-                <strong>Review progress</strong>
-                <small>See your learning activity</small>
-              </span>
-              <span class="quick-arrow">→</span>
-            </button>
-
+            <a href="./lessons.html" class="quick-action"><span class="quick-action-icon" aria-hidden="true">▤</span><span class="quick-action-copy"><strong>Explore lessons</strong><small>Learn something new</small></span><span class="quick-arrow" aria-hidden="true">→</span></a>
+            <a href="./quiz.html" class="quick-action"><span class="quick-action-icon" aria-hidden="true">✎</span><span class="quick-action-copy"><strong>Test your knowledge</strong><small>Practise what you know</small></span><span class="quick-arrow" aria-hidden="true">→</span></a>
+            <button type="button" class="quick-action" id="view-progress"><span class="quick-action-icon" aria-hidden="true">◷</span><span class="quick-action-copy"><strong>Review progress</strong><small>See your learning activity</small></span><span class="quick-arrow" aria-hidden="true">→</span></button>
           </div>
         </section>
 
-        <!-- Progress view -->
-        <section class="section-block progress-section" id="progress-section" hidden>
-          <div class="section-heading">
-            <div>
-              <p class="eyebrow">YOUR JOURNEY</p>
-              <h2>Study progress</h2>
-            </div>
-          </div>
-
-          <div class="panel">
-            <p id="progress-summary">
-              Your learning activity will appear here as you complete lessons and quizzes.
-            </p>
-
-            <div id="topic-performance"></div>
-
-            <a href="quiz.html" class="primary-button">
-              Practise more →
-            </a>
-          </div>
+        <section class="section-block progress-section" id="progress-section" aria-labelledby="progress-heading" hidden>
+          <div class="section-heading"><div><p class="eyebrow">Your journey</p><h2 id="progress-heading">Study progress</h2></div></div>
+          <div class="panel"><p id="progress-summary">Your learning activity will appear here as you complete lessons and quizzes.</p><div id="topic-performance"></div><a href="./quiz.html" class="primary-button">Practise more →</a></div>
         </section>
 
-        <footer class="footer">
-          <div class="footer-brand">
-            <span class="footer-mark">S</span>
-            <span>SONIC LEARN</span>
-          </div>
-          <p>Built for curious minds and ambitious learners.</p>
-          <span class="footer-version">Sonic Learn · v1.0</span>
-        </footer>
-
+        <footer class="footer"><div class="footer-brand"><span class="footer-mark" aria-hidden="true">S</span><span>SONIC LEARN</span></div><p>Built for curious minds and ambitious learners.</p><span class="footer-version">Sonic Learn · v1.1</span></footer>
       </div>
     </main>
   </div>
-
-  <!-- Mobile navigation backdrop -->
-  <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
-
-  <noscript>
-    <div class="noscript-message">
-      JavaScript is required for interactive statistics and study tracking.
-      Please enable JavaScript in your browser.
-    </div>
-  </noscript>
 </body>
 </html>
