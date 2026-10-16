@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        SONIC LEARN — Quizzes
+        File: quiz.html
+
+        Project structure (do not change):
+        index.html
+        css/style.css
+        js/app.js
+        lessons.html
+        quiz.html
+        lessons.json
+        manifest.json
+        sw.js
+
+        All styling lives in css/style.css.
+        All behaviour lives in js/app.js.
+    -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#080b14">
+
+    <title>Quizzes — Sonic Learn</title>
+    <meta name="description" content="Take Sonic Learn quizzes, check your understanding, and see your scores saved to your dashboard.">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Quizzes — Sonic Learn">
+    <meta property="og:description" content="Test your understanding with quick quizzes and see your progress.">
+    <meta property="og:site_name" content="Sonic Learn">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+    <script src="js/quiz.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="app-shell" id="app-shell">
+        <button
+            class="sidebar-backdrop"
+            id="sidebar-backdrop"
+            type="button"
+            aria-label="Close navigation menu"
+            tabindex="-1"
+            hidden
+        ></button>
+
+        <aside class="sidebar" id="sidebar" aria-label="Main sidebar">
+            <div class="sidebar-header">
+                <a class="brand" href="index.html" aria-label="Sonic Learn home">
+                    <span class="brand-mark" aria-hidden="true">S</span>
+                    <span class="brand-copy">
+                        <span class="brand-name">Sonic Learn</span>
+                        <span class="brand-tagline">Learn at your speed</span>
+                    </span>
+                </a>
+                <button
+                    class="icon-button sidebar-close"
+                    id="sidebar-close"
+                    type="button"
+                    aria-label="Close navigation"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="sidebar-profile" aria-label="Learning profile">
+                <div class="profile-avatar" aria-hidden="true">SL</div>
+                <div class="profile-copy">
+                    <p class="profile-name">Your learning space</p>
+                    <p class="profile-caption">Small steps. Strong progress.</p>
+                </div>
+            </div>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <p class="nav-heading">Workspace</p>
+                <a class="nav-link" href="index.html">
+                    <span class="nav-icon" aria-hidden="true">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-link" href="lessons.html">
+                    <span class="nav-icon" aria-hidden="true">▤</span>
+                    <span>Lessons</span>
+                </a>
+                <a class="nav-link active" href="quiz.html" aria-current="page">
+                    <span class="nav-icon" aria-hidden="true">✓</span>
+                    <span>Quizzes</span>
+                </a>
+                <a class="nav-link" href="index.html#progress-section">
+                    <span class="nav-icon" aria-hidden="true">↗</span>
+                    <span>My progress</span>
+                </a>
+
+                <p class="nav-heading nav-heading-spaced">Study tools</p>
+                <a class="nav-link" href="lessons.html">
+                    <span class="nav-icon" aria-hidden="true">▤</span>
+                    <span>Review lessons</span>
+                </a>
+                <a class="nav-link" href="index.html#goal-panel">
+                    <span class="nav-icon" aria-hidden="true">◎</span>
+                    <span>Daily goal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-spacer" aria-hidden="true"></div>
+
+            <section class="sidebar-tip" aria-labelledby="sidebar-tip-title">
+                <div class="sidebar-tip-icon" aria-hidden="true">✦</div>
+                <h2 id="sidebar-tip-title">A little tip</h2>
+                <p>Read each question fully before choosing. Slow down to speed up.</p>
+            </section>
+
+            <div class="sidebar-footer">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Learning workspace</span>
+                <span class="sidebar-version">Sonic Learn</span>
+            </div>
+        </aside>
+
+        <div class="main-column">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button
+                        class="icon-button menu-toggle"
+                        id="menu-toggle"
+                        type="button"
+                        aria-controls="sidebar"
+                        aria-expanded="false"
+                        aria-label="Open navigation menu"
+                    >
+                        <span aria-hidden="true">☰</span>
+                    </button>
+                    <div class="breadcrumb" aria-label="Breadcrumb">
+                        <a class="breadcrumb-muted" href="index.html">Workspace</a>
+                        <span aria-hidden="true">/</span>
+                        <span class="breadcrumb-current">Quizzes</span>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="today-label">
+                        <span class="today-label-icon" aria-hidden="true">◷</span>
+                        <time id="today-date" datetime="">Today</time>
+                    </div>
+                    <a class="topbar-link" href="lessons.html">Review lessons</a>
+                </div>
+            </header>
+
+            <main class="main-content" id="main-content" tabindex="-1">
+                <div class="page-content">
+
+                    <!-- ============ PAGE HEADER ============ -->
+                    <section class="welcome-section welcome-section-compact" aria-labelledby="quiz-page-title">
+                        <div class="welcome-copy">
+                            <p class="eyebrow">TEST YOUR UNDERSTANDING</p>
+                            <h1 id="quiz-page-title">Quizzes</h1>
+                            <p class="welcome-description">
+                                Answer the questions, submit your attempt, and see your score.
+                                Results are saved to your dashboard automatically.
+                            </p>
+                        </div>
+
+                        <div class="hero-card hero-card-tight" aria-label="Quiz tip">
+                            <div class="hero-decoration hero-decoration-one" aria-hidden="true"></div>
+                            <div class="hero-decoration hero-decoration-two" aria-hidden="true"></div>
+                            <div class="hero-card-content">
+                                <span class="hero-label">BEFORE YOU START</span>
+                                <h2>Attempt, then learn.</h2>
+                                <p>A wrong answer is useful data — it shows what to review next.</p>
+                                <a class="hero-link" href="#quiz-area">
+                                    Jump to quiz
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ QUIZ PICKER ============ -->
+                    <section class="dashboard-section" id="quiz-picker-section" aria-labelledby="quiz-picker-title">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">CHOOSE A QUIZ</p>
+                                <h2 id="quiz-picker-title">Available quizzes</h2>
+                                <p class="section-description">Pick a topic to begin. You can retry any quiz.</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="quiz-picker-grid"
+                            id="quiz-picker"
+                            aria-live="polite"
+                            aria-busy="true"
+                        >
+                            <!-- Populated by js/app.js from lessons.json -->
+                            <div class="empty-state">
+                                <span class="empty-state-icon" aria-hidden="true">✓</span>
+                                <h3>Loading quizzes…</h3>
+                                <p>Fetching quiz data from lessons.json.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ QUIZ AREA ============ -->
+                    <section class="dashboard-section" id="quiz-area" aria-labelledby="quiz-area-title" hidden>
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">QUIZ IN PROGRESS</p>
+                                <h2 id="quiz-area-title">Question</h2>
+                                <p class="section-description" id="quiz-progress-text">Question 1 of 1</p>
+                            </div>
+                            <button class="button button-secondary" id="quiz-exit" type="button">
+                                Exit quiz
+                            </button>
+                        </div>
+
+                        <div class="quiz-container">
+                            <article class="quiz-question" id="quiz-question-card" aria-live="polite">
+                                <p class="question-number" id="question-number">QUESTION 1</p>
+                                <h3 class="question-text" id="question-text">Loading question…</h3>
+
+                                <div class="answer-list" id="answer-list" role="radiogroup" aria-labelledby="question-text">
+                                    <!-- Populated by js/app.js -->
+                                </div>
+
+                                <div class="quiz-actions">
+                                    <button class="button button-secondary" id="quiz-prev" type="button" disabled>
+                                        Previous
+                                    </button>
+                                    <button class="button button-primary" id="quiz-next" type="button">
+                                        Next
+                                    </button>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- ============ QUIZ RESULT ============ -->
+                    <section class="dashboard-section" id="quiz-result-section" aria-labelledby="quiz-result-title" hidden>
+                        <div class="quiz-container">
+                            <article class="quiz-result">
+                                <p class="eyebrow">ATTEMPT COMPLETE</p>
+                                <h2 id="quiz-result-title">Well done.</h2>
+                                <p class="quiz-score" id="quiz-result-score">0%</p>
+                                <p id="quiz-result-summary" class="section-description">
+                                    You answered 0 of 0 correctly.
+                                </p>
+
+                                <div class="quiz-actions quiz-actions-center">
+                                    <button class="button button-primary" id="quiz-retry" type="button">
+                                        Retry quiz
+                                    </button>
+                                    <a class="button button-secondary" href="lessons.html">
+                                        Review lessons
+                                    </a>
+                                    <a class="button button-secondary" href="index.html">
+                                        Back to dashboard
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+
+                    <!-- ============ FOOTER ============ -->
+                    <footer class="page-footer">
+                        <div class="footer-brand">
+                            <span class="footer-brand-mark" aria-hidden="true">S</span>
+                            <span>
+                                <strong>Sonic Learn</strong>
+                                <span class="footer-tagline">Learn at your speed.</span>
+                            </span>
+                        </div>
+
+                        <nav class="footer-navigation" aria-label="Footer navigation">
+                            <a href="index.html">Dashboard</a>
+                            <a href="lessons.html">Lessons</a>
+                            <a href="quiz.html">Quizzes</a>
+                            <a href="index.html#progress-section">Progress</a>
+                        </nav>
+
+                        <p class="footer-copyright">
+                            <span>&copy;</span>
+                            <span id="footer-year">2026</span>
+                            Sonic Learn. Keep learning, one step at a time.
+                        </p>
+                    </footer>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="visually-hidden" id="app-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+        SONIC LEARN — Lessons
+        File: lessons.html
+
+        Project structure (do not change):
+        index.html
+        css/style.css
+        js/app.js
+        lessons.html
+        quiz.html
+        lessons.json
+        manifest.json
+        sw.js
+
+        All styling lives in css/style.css.
+        All behaviour lives in js/app.js.
+        Lesson data is fetched from lessons.json.
+    -->
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#080b14">
+
+    <title>Lessons — Sonic Learn</title>
+    <meta name="description" content="Browse Sonic Learn lessons by topic, track your progress, and open a lesson to study.">
+    <meta name="robots" content="index, follow">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lessons — Sonic Learn">
+    <meta property="og:description" content="Browse lessons by topic and keep your learning moving.">
+    <meta property="og:site_name" content="Sonic Learn">
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/app.js" defer></script>
+    <script src="js/lessons.js" defer></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <div class="app-shell" id="app-shell">
+        <button
+            class="sidebar-backdrop"
+            id="sidebar-backdrop"
+            type="button"
+            aria-label="Close navigation menu"
+            tabindex="-1"
+            hidden
+        ></button>
+
+        <aside class="sidebar" id="sidebar" aria-label="Main sidebar">
+            <div class="sidebar-header">
+                <a class="brand" href="index.html" aria-label="Sonic Learn home">
+                    <span class="brand-mark" aria-hidden="true">S</span>
+                    <span class="brand-copy">
+                        <span class="brand-name">Sonic Learn</span>
+                        <span class="brand-tagline">Learn at your speed</span>
+                    </span>
+                </a>
+                <button
+                    class="icon-button sidebar-close"
+                    id="sidebar-close"
+                    type="button"
+                    aria-label="Close navigation"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="sidebar-profile" aria-label="Learning profile">
+                <div class="profile-avatar" aria-hidden="true">SL</div>
+                <div class="profile-copy">
+                    <p class="profile-name">Your learning space</p>
+                    <p class="profile-caption">Small steps. Strong progress.</p>
+                </div>
+            </div>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <p class="nav-heading">Workspace</p>
+                <a class="nav-link" href="index.html">
+                    <span class="nav-icon" aria-hidden="true">⌂</span>
+                    <span>Dashboard</span>
+                </a>
+                <a class="nav-link active" href="lessons.html" aria-current="page">
+                    <span class="nav-icon" aria-hidden="true">▤</span>
+                    <span>Lessons</span>
+                </a>
+                <a class="nav-link" href="quiz.html">
+                    <span class="nav-icon" aria-hidden="true">✓</span>
+                    <span>Quizzes</span>
+                </a>
+                <a class="nav-link" href="index.html#progress-section">
+                    <span class="nav-icon" aria-hidden="true">↗</span>
+                    <span>My progress</span>
+                </a>
+
+                <p class="nav-heading nav-heading-spaced">Study tools</p>
+                <a class="nav-link" href="#lessons-toolbar">
+                    <span class="nav-icon" aria-hidden="true">⚡</span>
+                    <span>Filter lessons</span>
+                </a>
+                <a class="nav-link" href="index.html#goal-panel">
+                    <span class="nav-icon" aria-hidden="true">◎</span>
+                    <span>Daily goal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-spacer" aria-hidden="true"></div>
+
+            <section class="sidebar-tip" aria-labelledby="sidebar-tip-title">
+                <div class="sidebar-tip-icon" aria-hidden="true">✦</div>
+                <h2 id="sidebar-tip-title">A little tip</h2>
+                <p>Skim the title and summary first — then read carefully. It anchors understanding.</p>
+            </section>
+
+            <div class="sidebar-footer">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Learning workspace</span>
+                <span class="sidebar-version">Sonic Learn</span>
+            </div>
+        </aside>
+
+        <div class="main-column">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button
+                        class="icon-button menu-toggle"
+                        id="menu-toggle"
+                        type="button"
+                        aria-controls="sidebar"
+                        aria-expanded="false"
+                        aria-label="Open navigation menu"
+                    >
+                        <span aria-hidden="true">☰</span>
+                    </button>
+                    <div class="breadcrumb" aria-label="Breadcrumb">
+                        <a class="breadcrumb-muted" href="index.html">Workspace</a>
+                        <span aria-hidden="true">/</span>
+                        <span class="breadcrumb-current">Lessons</span>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <div class="today-label">
+                        <span class="today-label-icon" aria-hidden="true">◷</span>
+                        <time id="today-date" datetime="">Today</time>
+                    </div>
+                    <a class="topbar-link" href="quiz.html">Take a quiz</a>
+                </div>
+            </header>
+
+            <main class="main-content" id="main-content" tabindex="-1">
+                <div class="page-content">
+
+                    <!-- ============ PAGE HEADER ============ -->
+                    <section class="welcome-section welcome-section-compact" aria-labelledby="lessons-title">
+                        <div class="welcome-copy">
+                            <p class="eyebrow">YOUR LIBRARY</p>
+                            <h1 id="lessons-title">Lessons</h1>
+                            <p class="welcome-description">
+                                Browse by topic, pick a lesson, and take it one idea at a time.
+                                Your progress is saved as you complete each one.
+                            </p>
+                        </div>
+
+                        <div class="hero-card hero-card-tight" aria-label="Study tip">
+                            <div class="hero-decoration hero-decoration-one" aria-hidden="true"></div>
+                            <div class="hero-decoration hero-decoration-two" aria-hidden="true"></div>
+                            <div class="hero-card-content">
+                                <span class="hero-label">HOW TO USE THIS PAGE</span>
+                                <h2>Read. Reflect. Repeat.</h2>
+                                <p>Finish a lesson, then try the matching quiz to lock it in.</p>
+                                <a class="hero-link" href="quiz.html">
+                                    Go to quizzes
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ============ TOOLBAR ============ -->
+                    <section class="dashboard-section" id="lessons-toolbar" aria-labelledby="lessons-toolbar-title">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">FIND YOUR FOCUS</p>
+                                <h2 id="lessons-toolbar-title">Filter lessons</h2>
+                                <p class="section-description">Search by keyword or filter by topic.</p>
+                            </div>
+                            <p class="text-link" id="lessons-count" aria-live="polite">Loading lessons…</p>
+                        </div>
+
+                        <div class="toolbar" role="search">
+                            <div class="search-box">
+                                <label class="visually-hidden" for="lessons-search">Search lessons</label>
+                                <input
+                                    id="lessons-search"
+                                    class="input"
+                                    type="search"
+                                    placeholder="Search lessons by title or keyword"
+                                    autocomplete="off"
+                                >
+                            </div>
+
+                            <label class="visually-hidden" for="lessons-topic">Filter by topic</label>
+                            <select id="lessons-topic" class="input">
+                                <option value="">All topics</option>
+                            </select>
+
+                            <button class="button button-secondary" id="lessons-reset" type="button">
+                                Reset filters
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- ============ LESSONS GRID ============ -->
+                    <section class="dashboard-section" aria-labelledby="lessons-list-title">
+                        <div class="section-heading">
+                            <div>
+                                <p class="eyebrow">AVAILABLE LESSONS</p>
+                                <h2 id="lessons-list-title">All lessons</h2>
+                            </div>
+                        </div>
+
+                        <div
+                            class="lessons-grid"
+                            id="lessons-list"
+                            aria-live="polite"
+                            aria-busy="true"
+                        >
+                            <!-- Populated by js/app.js from lessons.json -->
+                            <div class="empty-state">
+                                <span class="empty-state-icon" aria-hidden="true">▤</span>
+                                <h3>Loading lessons…</h3>
+                                <p>Fetching lesson data from lessons.json.</p>
+                            </div>
+                        </div>
+
+                        <noscript>
+                            <p class="notice">
+                                JavaScript is turned off. Lessons cannot be loaded from lessons.json
+                                without it. Please enable JavaScript to browse lessons.
+                            </p>
+                        </noscript>
+                    </section>
+
+                    <!-- ============ FOOTER ============ -->
+                    <footer class="page-footer">
+                        <div class="footer-brand">
+                            <span class="footer-brand-mark" aria-hidden="true">S</span>
+                            <span>
+                                <strong>Sonic Learn</strong>
+                                <span class="footer-tagline">Learn at your speed.</span>
+                            </span>
+                        </div>
+
+                        <nav class="footer-navigation" aria-label="Footer navigation">
+                            <a href="index.html">Dashboard</a>
+                            <a href="lessons.html">Lessons</a>
+                            <a href="quiz.html">Quizzes</a>
+                            <a href="index.html#progress-section">Progress</a>
+                        </nav>
+
+                        <p class="footer-copyright">
+                            <span>&copy;</span>
+                            <span id="footer-year">2026</span>
+                            Sonic Learn. Keep learning, one step at a time.
+                        </p>
+                    </footer>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <div class="visually-hidden" id="app-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>

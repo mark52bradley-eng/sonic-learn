@@ -1,0 +1,601 @@
+{
+  "version": 1,
+  "updated": "2026-10-16",
+  "lessons": [
+    {
+      "id": "lesson-01",
+      "title": "Introduction to Fractions",
+      "topic": "Maths",
+      "level": "Beginner",
+      "duration": 10,
+      "summary": "Understand what a fraction represents and how to read numerators and denominators.",
+      "keywords": ["fraction", "numerator", "denominator", "parts", "whole"],
+      "body": [
+        "A fraction describes a part of a whole. It is written as one number over another, separated by a line.",
+        "The top number is the numerator. It tells you how many parts you have.",
+        "The bottom number is the denominator. It tells you how many equal parts the whole is divided into.",
+        "For example, 3/4 means you have 3 of the 4 equal parts that make up the whole.",
+        "Fractions appear everywhere: measuring ingredients, reading time, sharing money, and comparing scores."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "In the fraction 3/4, which number is the numerator?",
+          "options": ["3", "4", "7", "12"],
+          "answer": 0
+        },
+        {
+          "id": "q2",
+          "question": "What does the denominator tell you?",
+          "options": [
+            "How many parts you have",
+            "How many equal parts the whole is split into",
+            "The total of numerator and denominator",
+            "The answer to the fraction"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "Which fraction represents one half?",
+          "options": ["1/4", "2/2", "1/2", "3/4"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-02",
+      "title": "Adding and Subtracting Fractions",
+      "topic": "Maths",
+      "level": "Beginner",
+      "duration": 12,
+      "summary": "Learn how to add and subtract fractions with the same denominator, then with different denominators.",
+      "keywords": ["addition", "subtraction", "common denominator", "fractions"],
+      "body": [
+        "When two fractions have the same denominator, you add or subtract only the numerators.",
+        "For example, 2/5 + 1/5 = 3/5. The denominator stays the same.",
+        "When denominators differ, first find a common denominator.",
+        "For 1/2 + 1/3, the common denominator is 6, so the sum becomes 3/6 + 2/6 = 5/6.",
+        "Always simplify your answer if the numerator and denominator share a factor."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What is 2/5 + 1/5?",
+          "options": ["3/10", "3/5", "2/10", "1/5"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "To add 1/2 + 1/3, what common denominator do you use?",
+          "options": ["2", "3", "5", "6"],
+          "answer": 3
+        },
+        {
+          "id": "q3",
+          "question": "What is 3/6 + 2/6?",
+          "options": ["5/6", "5/12", "6/6", "1/6"],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "lesson-03",
+      "title": "Decimals and Place Value",
+      "topic": "Maths",
+      "level": "Beginner",
+      "duration": 10,
+      "summary": "Understand decimal notation and how place value works to the right of the decimal point.",
+      "keywords": ["decimal", "place value", "tenths", "hundredths"],
+      "body": [
+        "A decimal point separates whole numbers from parts of a whole.",
+        "The first digit after the decimal is the tenths place, the second is the hundredths place.",
+        "So 0.5 means five tenths, and 0.25 means twenty-five hundredths.",
+        "Decimals and fractions describe the same idea — 0.5 is the same as 1/2.",
+        "Reading decimals aloud helps you keep the place values straight."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What does the first digit after the decimal point represent?",
+          "options": ["Ones", "Tenths", "Hundredths", "Thousands"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "Which fraction equals 0.25?",
+          "options": ["1/2", "1/3", "1/4", "1/5"],
+          "answer": 2
+        },
+        {
+          "id": "q3",
+          "question": "0.5 is the same as which fraction?",
+          "options": ["1/5", "1/4", "1/3", "1/2"],
+          "answer": 3
+        }
+      ]
+    },
+    {
+      "id": "lesson-04",
+      "title": "Introduction to Algebra",
+      "topic": "Maths",
+      "level": "Intermediate",
+      "duration": 14,
+      "summary": "Meet variables, expressions, and simple equations — the building blocks of algebra.",
+      "keywords": ["algebra", "variable", "expression", "equation"],
+      "body": [
+        "Algebra uses letters to stand in for unknown numbers. These letters are called variables.",
+        "An expression combines numbers, variables, and operations — for example, 3x + 2.",
+        "An equation says two expressions are equal, like 3x + 2 = 11.",
+        "To solve an equation, isolate the variable by doing the same operation on both sides.",
+        "Algebra is a language for describing patterns and relationships."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What is a variable?",
+          "options": [
+            "A fixed number",
+            "A letter that stands for an unknown number",
+            "A type of equation",
+            "A mathematical symbol for addition"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "Solve for x: x + 4 = 9",
+          "options": ["4", "5", "9", "13"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "Which of these is an equation?",
+          "options": ["3x + 2", "x", "3x + 2 = 11", "2 + 3"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-05",
+      "title": "Geometry Basics: Angles and Lines",
+      "topic": "Maths",
+      "level": "Beginner",
+      "duration": 11,
+      "summary": "Explore points, lines, angles, and how to measure them.",
+      "keywords": ["geometry", "angle", "line", "degrees"],
+      "body": [
+        "A point marks a location. A line extends infinitely in both directions.",
+        "An angle is formed where two lines meet at a point.",
+        "Angles are measured in degrees. A full circle is 360 degrees.",
+        "A right angle is exactly 90 degrees, often marked with a small square.",
+        "Angles smaller than 90 degrees are acute; larger ones up to 180 are obtuse."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "How many degrees are in a full circle?",
+          "options": ["90", "180", "270", "360"],
+          "answer": 3
+        },
+        {
+          "id": "q2",
+          "question": "What is a right angle?",
+          "options": ["45 degrees", "90 degrees", "180 degrees", "360 degrees"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "An angle smaller than 90 degrees is called…",
+          "options": ["Obtuse", "Reflex", "Acute", "Straight"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-06",
+      "title": "Introduction to Cells",
+      "topic": "Biology",
+      "level": "Beginner",
+      "duration": 12,
+      "summary": "Discover the basic unit of life — the cell — and what makes it work.",
+      "keywords": ["cell", "biology", "nucleus", "membrane"],
+      "body": [
+        "All living things are made of cells. Some organisms are a single cell; others have trillions.",
+        "Every cell is surrounded by a membrane that controls what enters and leaves.",
+        "Inside the cell, the nucleus contains genetic material that directs activity.",
+        "Cytoplasm is the jelly-like substance where chemical reactions happen.",
+        "Understanding cells is the foundation of biology, medicine, and genetics."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What is the basic unit of life?",
+          "options": ["Atom", "Cell", "Organ", "Molecule"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "What does the cell membrane do?",
+          "options": [
+            "Stores genetic material",
+            "Produces energy",
+            "Controls what enters and leaves the cell",
+            "Divides the cell"
+          ],
+          "answer": 2
+        },
+        {
+          "id": "q3",
+          "question": "Where is genetic material stored in most cells?",
+          "options": ["Membrane", "Cytoplasm", "Nucleus", "Vacuole"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-07",
+      "title": "Photosynthesis Explained",
+      "topic": "Biology",
+      "level": "Intermediate",
+      "duration": 13,
+      "summary": "How plants turn sunlight, water, and carbon dioxide into food and oxygen.",
+      "keywords": ["photosynthesis", "chlorophyll", "plants", "oxygen"],
+      "body": [
+        "Photosynthesis is the process plants use to make their own food.",
+        "Plants absorb sunlight, water from the soil, and carbon dioxide from the air.",
+        "Chlorophyll, the green pigment in leaves, captures light energy.",
+        "The plant produces glucose for energy and releases oxygen as a by-product.",
+        "Almost all life on Earth depends on photosynthesis, directly or indirectly."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What gas do plants take in during photosynthesis?",
+          "options": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+          "answer": 2
+        },
+        {
+          "id": "q2",
+          "question": "What is the green pigment in leaves called?",
+          "options": ["Melanin", "Chlorophyll", "Carotene", "Hemoglobin"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "What gas is released as a by-product?",
+          "options": ["Carbon dioxide", "Nitrogen", "Oxygen", "Methane"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-08",
+      "title": "The Human Digestive System",
+      "topic": "Biology",
+      "level": "Intermediate",
+      "duration": 14,
+      "summary": "Follow food from mouth to intestine and learn the role of each organ.",
+      "keywords": ["digestion", "stomach", "intestines", "enzymes"],
+      "body": [
+        "Digestion begins in the mouth, where chewing and saliva break food down.",
+        "The food travels down the oesophagus into the stomach.",
+        "In the stomach, acid and enzymes further break food into a liquid mixture.",
+        "The small intestine absorbs most nutrients into the bloodstream.",
+        "The large intestine absorbs water, and the remaining waste is expelled."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Where does digestion begin?",
+          "options": ["Stomach", "Mouth", "Small intestine", "Large intestine"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "Which organ absorbs most nutrients?",
+          "options": ["Stomach", "Oesophagus", "Small intestine", "Large intestine"],
+          "answer": 2
+        },
+        {
+          "id": "q3",
+          "question": "What is the main role of the large intestine?",
+          "options": [
+            "Absorb nutrients",
+            "Produce acid",
+            "Absorb water",
+            "Store food"
+          ],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-09",
+      "title": "Newton's Laws of Motion",
+      "topic": "Physics",
+      "level": "Intermediate",
+      "duration": 15,
+      "summary": "The three laws that describe how objects move and why.",
+      "keywords": ["motion", "force", "inertia", "acceleration"],
+      "body": [
+        "First law: an object stays at rest or moves in a straight line unless a force acts on it.",
+        "Second law: force equals mass times acceleration (F = ma).",
+        "Third law: for every action there is an equal and opposite reaction.",
+        "These laws explain everything from a rolling ball to a rocket launch.",
+        "Understanding them helps you predict how objects behave in the real world."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Which law says F = ma?",
+          "options": ["First law", "Second law", "Third law", "Law of gravity"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "What does the third law state?",
+          "options": [
+            "Objects stay at rest",
+            "Force equals mass times acceleration",
+            "Every action has an equal and opposite reaction",
+            "Energy cannot be created"
+          ],
+          "answer": 2
+        },
+        {
+          "id": "q3",
+          "question": "The first law is also known as the law of…",
+          "options": ["Momentum", "Gravity", "Inertia", "Friction"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-10",
+      "title": "Energy: Types and Transfers",
+      "topic": "Physics",
+      "level": "Beginner",
+      "duration": 12,
+      "summary": "Explore kinetic, potential, thermal, and other forms of energy and how they change.",
+      "keywords": ["energy", "kinetic", "potential", "transfer"],
+      "body": [
+        "Energy is the ability to do work. It cannot be created or destroyed — only transferred.",
+        "Kinetic energy is the energy of motion; potential energy is stored energy.",
+        "Thermal energy comes from the movement of particles.",
+        "Energy transfers constantly: a falling ball converts potential into kinetic energy.",
+        "Understanding energy helps you reason about everything from machines to weather."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What is kinetic energy?",
+          "options": [
+            "Stored energy",
+            "Energy of motion",
+            "Heat energy",
+            "Chemical energy"
+          ],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "Can energy be created or destroyed?",
+          "options": [
+            "Yes, both",
+            "Only created",
+            "Only destroyed",
+            "No, only transferred"
+          ],
+          "answer": 3
+        },
+        {
+          "id": "q3",
+          "question": "A ball at the top of a hill has mostly…",
+          "options": ["Kinetic energy", "Thermal energy", "Potential energy", "Sound energy"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-11",
+      "title": "The Water Cycle",
+      "topic": "Geography",
+      "level": "Beginner",
+      "duration": 10,
+      "summary": "How water moves between oceans, atmosphere, and land in a continuous cycle.",
+      "keywords": ["water cycle", "evaporation", "condensation", "precipitation"],
+      "body": [
+        "The water cycle describes how water moves through Earth's systems.",
+        "Evaporation turns liquid water into vapour, mostly from oceans.",
+        "Condensation forms clouds when vapour cools in the atmosphere.",
+        "Precipitation returns water to the surface as rain, snow, or hail.",
+        "Runoff and groundwater flow carry water back to oceans and rivers."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What process turns liquid water into vapour?",
+          "options": ["Condensation", "Evaporation", "Precipitation", "Runoff"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "What forms clouds?",
+          "options": ["Evaporation", "Condensation", "Precipitation", "Collection"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "Rain, snow, and hail are all forms of…",
+          "options": ["Evaporation", "Condensation", "Precipitation", "Runoff"],
+          "answer": 2
+        }
+      ]
+    },
+    {
+      "id": "lesson-12",
+      "title": "Reading Maps and Coordinates",
+      "topic": "Geography",
+      "level": "Beginner",
+      "duration": 11,
+      "summary": "Learn latitude, longitude, and how to locate places on a map.",
+      "keywords": ["latitude", "longitude", "coordinates", "map"],
+      "body": [
+        "Maps show the world on a flat surface using a scale and a coordinate system.",
+        "Lines of latitude run east–west and measure distance north or south of the equator.",
+        "Lines of longitude run north–south and measure distance east or west of the prime meridian.",
+        "Coordinates are written as latitude first, then longitude.",
+        "0 degrees latitude is the equator; 0 degrees longitude is the prime meridian."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Which lines run east–west?",
+          "options": ["Latitude", "Longitude", "Equator", "Meridian"],
+          "answer": 0
+        },
+        {
+          "id": "q2",
+          "question": "What is 0 degrees latitude called?",
+          "options": ["Prime meridian", "Equator", "Tropic of Cancer", "North Pole"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "Coordinates are written as…",
+          "options": [
+            "Longitude first, then latitude",
+            "Latitude first, then longitude",
+            "Always as decimals",
+            "Always in miles"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "lesson-13",
+      "title": "Introduction to Programming Logic",
+      "topic": "Computing",
+      "level": "Beginner",
+      "duration": 13,
+      "summary": "Sequencing, conditions, and loops — the three core ideas behind every program.",
+      "keywords": ["programming", "logic", "loops", "conditions"],
+      "body": [
+        "Programming is giving a computer a precise list of instructions.",
+        "Sequencing means instructions run in order, one after another.",
+        "Conditions let the program choose between paths — for example, if a score is above 50, pass.",
+        "Loops repeat a set of instructions until a condition is met.",
+        "Almost every program — from a game to a spreadsheet — is built from these three ideas."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What does sequencing mean in programming?",
+          "options": [
+            "Instructions run in order",
+            "Instructions repeat",
+            "Instructions choose between paths",
+            "Instructions stop the program"
+          ],
+          "answer": 0
+        },
+        {
+          "id": "q2",
+          "question": "Which idea lets a program choose between paths?",
+          "options": ["Sequencing", "Conditions", "Loops", "Variables"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "What is a loop used for?",
+          "options": [
+            "Repeating instructions",
+            "Storing data",
+            "Formatting output",
+            "Ending a program"
+          ],
+          "answer": 0
+        }
+      ]
+    },
+    {
+      "id": "lesson-14",
+      "title": "The Internet: How Data Travels",
+      "topic": "Computing",
+      "level": "Intermediate",
+      "duration": 14,
+      "summary": "How data moves across networks using packets, IP addresses, and protocols.",
+      "keywords": ["internet", "packets", "IP", "protocols"],
+      "body": [
+        "The internet is a global network of computers that pass data to each other.",
+        "Data is broken into small units called packets before being sent.",
+        "Each packet carries the destination IP address so it can be routed.",
+        "Protocols like TCP and IP make sure packets arrive correctly and in order.",
+        "Because packets can take different routes, the internet stays resilient."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "What is data broken into before being sent?",
+          "options": ["Files", "Packets", "Bytes", "Streams"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "What do packets carry so they can be routed?",
+          "options": ["A password", "A file name", "A destination IP address", "A timestamp only"],
+          "answer": 2
+        },
+        {
+          "id": "q3",
+          "question": "What do TCP and IP do?",
+          "options": [
+            "Encrypt data",
+            "Ensure packets arrive correctly and in order",
+            "Compress files",
+            "Delete old data"
+          ],
+          "answer": 1
+        }
+      ]
+    },
+    {
+      "id": "lesson-15",
+      "title": "Study Skills: How to Learn Better",
+      "topic": "Study Skills",
+      "level": "Beginner",
+      "duration": 10,
+      "summary": "Practical techniques to make revision more effective and less stressful.",
+      "keywords": ["study skills", "revision", "memory", "learning"],
+      "body": [
+        "Learning is a skill you can improve — it is not fixed.",
+        "Space your study across days instead of cramming it all at once.",
+        "Test yourself often. Retrieval practice beats re-reading.",
+        "Explain ideas in your own words to check understanding.",
+        "Sleep, breaks, and hydration all affect how well you learn."
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "question": "Which technique is more effective than re-reading?",
+          "options": ["Highlighting", "Retrieval practice", "Copying notes", "Watching videos"],
+          "answer": 1
+        },
+        {
+          "id": "q2",
+          "question": "Spacing your study across days is called…",
+          "options": ["Cramming", "Spaced practice", "Skimming", "Passive reading"],
+          "answer": 1
+        },
+        {
+          "id": "q3",
+          "question": "Which of these helps learning?",
+          "options": ["Skipping sleep", "Skipping breaks", "Adequate sleep", "Studying all night"],
+          "answer": 2
+        }
+      ]
+    }
+  ]
+}
