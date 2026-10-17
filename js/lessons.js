@@ -7,12 +7,7 @@
      - Fetch lessons.json via SonicLearn.loadLessonData()
      - Populate the topic filter (#lessons-topic)
      - Render lesson cards into #lessons-list
-     - Interactive search (#lessons-search):
-         · debounced input
-         · match highlighting
-         · clear button (#lessons-search-clear)
-         · Enter clears and resets
-         · Escape blurs
+     - Interactive search (#lessons-search)
      - Topic filter + Reset button
      - Live result count (#lessons-count)
      - Inline reader (#lesson-reader) that keeps the grid visible
@@ -66,6 +61,7 @@
 
     populateTopicFilter();
     wireToolbar();
+    wireEventDelegation(); // Attach click listener ONCE
     renderLessons();
   }
 
@@ -91,6 +87,20 @@
   }
 
   /* ---------------------------------------------------------
+     Event Delegation (Bulletproof button clicks)
+     --------------------------------------------------------- */
+  function wireEventDelegation() {
+    listEl.addEventListener('click', (e) => {
+      // Find the closest button with class 'lesson-open'
+      const btn = e.target.closest('.lesson-open');
+      if (!btn) return;
+      
+      const id = btn.getAttribute('data-id');
+      if (id) openLesson(id);
+    });
+  }
+
+  /* ---------------------------------------------------------
      Toolbar wiring
      --------------------------------------------------------- */
   function wireToolbar() {
@@ -110,7 +120,7 @@
         }, SEARCH_DEBOUNCE);
       });
 
-      // Enter clears the search (quick escape hatch)
+      // Enter clears the search; Escape blurs
       searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
           e.preventDefault();
@@ -210,7 +220,6 @@
     const safe = S.escapeHTML(text || '');
     if (!query) return safe;
 
-    // Escape regex special chars in query
     const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const re = new RegExp(`(${escaped})`, 'ig');
 
@@ -230,7 +239,7 @@
       if (countEl) countEl.textContent = 'No lessons found';
       listEl.innerHTML = `
         <div class="empty-state">
-          <span class="empty-state-icon" aria-hidden="true">▤</span>
+          <span class="empty-state-icon" aria-hidden="true"><i class="ph ph-books"></i></span>
           <h3>No lessons match your filters</h3>
           <p>Try a different topic or clear your search.</p>
           <button class="button button-secondary" id="lessons-empty-reset" type="button">
@@ -258,9 +267,13 @@
         const level       = S.escapeHTML(lesson.level || 'Beginner');
         const mins        = Number(lesson.duration) || 0;
 
+        const iconHtml = isDone 
+          ? '<i class="ph ph-check-circle"></i>' 
+          : '<i class="ph ph-book-open"></i>';
+
         return `
           <article class="lesson-card ${isDone ? 'lesson-card-done' : ''} ${isOpen ? 'is-open' : ''}" data-id="${S.escapeHTML(lesson.id)}">
-            <span class="lesson-icon" aria-hidden="true">${isDone ? '✓' : '▤'}</span>
+            <span class="lesson-icon" aria-hidden="true">${iconHtml}</span>
 
             <div class="lesson-meta">
               <span class="badge badge-blue">${topic}</span>
@@ -285,11 +298,6 @@
           </article>`;
       })
       .join('');
-
-    // Wire "Open lesson" buttons
-    $$('.lesson-open', listEl).forEach((btn) => {
-      btn.addEventListener('click', () => openLesson(btn.getAttribute('data-id')));
-    });
   }
 
   /* ---------------------------------------------------------
@@ -331,10 +339,10 @@
         <div class="lesson-complete-bar">
           ${
             isDone
-              ? `<span class="badge badge-green">Completed</span>
+              ? `<span class="badge badge-green"><i class="ph ph-check"></i> Completed</span>
                  <a class="button button-secondary" href="quiz.html">Take the quiz</a>`
               : `<button class="button button-primary" id="lesson-mark-complete" type="button">
-                   Mark as complete
+                   <i class="ph ph-check"></i> Mark as complete
                  </button>
                  <a class="button button-secondary" href="quiz.html">Skip to quiz</a>`
           }
