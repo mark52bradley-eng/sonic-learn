@@ -11,7 +11,7 @@
      - Delete old sonic-learn-* caches on activate
    ========================================================= */
 
-const CACHE_NAME = "sonic-learn-v2";
+const CACHE_NAME = "sonic-learn-v1";
 
 const APP_FILES = [
     "./",
@@ -19,10 +19,12 @@ const APP_FILES = [
     "./lessons.html",
     "./quiz.html",
     "./css/style.css",
+    "./css/game.css",       
     "./js/app.js",
     "./js/progress.js",
     "./js/lessons.js",
     "./js/quiz.js",
+    "./js/game.js",         
     "./lessons.json",
     "./manifest.json"
 ];

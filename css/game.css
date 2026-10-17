@@ -1,0 +1,144 @@
+/* =========================================================
+   SONIC LEARN — Orb Collector game styles
+   File: css/game.css
+   Loaded only when the game section exists (see game.js)
+   ========================================================= */
+
+.game-section {
+  margin-top: 40px;
+}
+
+.game-shell {
+  margin-top: 18px;
+  animation: gameShellIn 240ms ease-out;
+}
+
+@keyframes gameShellIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.game-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 320px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 20%, #16233f, #070b14 70%);
+  border: 1px solid rgba(96, 165, 250, 0.28);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- HUD ---------- */
+.game-hud {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.game-hud-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px 14px;
+  background: rgba(8, 11, 20, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.game-hud-label {
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.game-hud-value {
+  color: var(--text);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Overlay ---------- */
+.game-overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(4, 7, 14, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: opacity var(--transition);
+}
+
+.game-overlay[hidden] {
+  display: none;
+}
+
+.game-overlay-card {
+  max-width: 460px;
+  padding: 26px;
+  text-align: center;
+  background: var(--surface-glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+}
+
+.game-overlay-card h3 {
+  margin: 6px 0 10px;
+  font-size: 1.3rem;
+}
+
+.game-overlay-card p {
+  margin-bottom: 20px;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+}
+
+.game-overlay-card strong {
+  color: #bfdbfe;
+}
+
+.game-overlay-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 760px) {
+  .game-frame {
+    aspect-ratio: 4 / 5;
+    min-height: 380px;
+  }
+  .game-overlay-card {
+    padding: 20px;
+  }
+  .game-overlay-actions .button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-shell { animation: none; }
+}
